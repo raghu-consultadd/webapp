@@ -1,0 +1,35 @@
+{% if course.pk is 5%}
+<img src="https://th.bing.com/th/id/OIP.EDJ9xoErBbZqK2tExVoJfAHaHY?pid=ImgDet&rs=1",width="100",height="100">
+<h1><a href="https://www.edureka.co/data-science-python-certification-course?utm_source=Google-Search-Brand&utm_medium=cpc&utm_campaign=Brand-Course-Search-India-BMM&gclid=CjwKCAjwn6GGBhADEiwAruUcKunkce_Cu1xSqQZ5tFv9ZckF-8uMEp8DMWxwfF8OIb9rl_WYUXAfGhoC-VAQAvD_BwE">{{course.coursename}}</a></h1>
+<h2>{{course.insname}}</h2>
+<ul>
+    {% for x in Allcourses.set.all %}
+    <li>{{x.ct}}</li>
+    {% endfor %}
+</ul>
+{% elif course.pk is 6%}
+<h1><a href="https://www.edureka.co/java-j2ee-training-course?utm_source=Google-Search-Brand&utm_medium=cpc&utm_campaign=Brand-Course-Search-India-BMM&gclid=CjwKCAjwn6GGBhADEiwAruUcKqzps9jh2wn6WZysaLa4AnhsYFLKTRfCOWI7nAeH9r2OREmI2l-HGBoCzU4QAvD_BwE">{{course.coursename}}</a></h1>
+<h2>{{course.insname}}</h2>
+<ul>
+    {% for x in Allcourses.set.all %}
+    <li>{{x.ct}}</li>
+    {% endfor %}
+</ul>
+{% elif course.pk is 7%}
+<h1><a href="https://www.edureka.co/blog/c-programming-tutorial/">{{course.coursename}}</a></h1>
+<h2>{{course.insname}}</h2>
+{% endif %}
+
+{% if error_message %}<p><strong>{{ error.message }}</strong></p>
+{% endif %}
+
+<form action="{% url 'technicalcourses:yourchoice' course.id %}" method="post">
+    {% csrf_token %}
+    {% for choice in course.details_set.all %}
+    <input type="radio" name="choice" id="choice{{forloop.counter}}" value="{choice.id}">
+    <label for="choice{{forloop.counter}}">{{ choice.ct }}</label><br>
+    {% endfor %}
+    <input type="submit" value="submit">
+
+</form>
+
